@@ -1,48 +1,29 @@
 Introduction
 ============
-collective.piwik.flowplayer was created to display the hits of a video, for Plone systems that use piwik. 
+collective.piwik.flowplayer was created to display a video play counter for Plone sites that use flowplayer. 
 
-Piwik (http://piwik.org/) is a great Open Source web analytics platform. 
+The Piwik open source analytics system (http://piwik.org/) is used to store the play counter.
+
+Works with and without collective.transcode.star
 
 How to get it working
 ============
-1)Needs collective.flowplayer (http://pypi.python.org/pypi/collective.flowplayer) or collective.transcode.star 
-(pypi.python.org/pypi/collective.transcode.star) in order to work, and of course a Piwik account!
+ - You need to have access to a working Piwik installation. Anonymous users should have view permission for your site's stats.
 
-2)A little change is necessary to be done on the Piwik code, that is pasted on your Plone site. 
-From the control panel, choose Site, and add on the first line of the Piwik code the snippet "var site_id = X;" , 
-where X is the site id that Piwik assigns to your site. 
+ - Add the Piwik Tracking Tag to Javascript web stats support field at <SITEURL>/@@site-controlpanel
 
-<script type="text/javascript">
-var site_id=X;
-...
-<!-- End Piwik Tag -->
+ - You need to make a small change adding the link "var site_id = X;", replacing X with your Piwik site_id
+   For example, if on the Piwik code you have:
+   var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 6);
+   then site_id = 6 in your case
 
 
-Site id is a variable assigned for your website, by Piwik, because Piwik can have many websites on an installation. 
-For example, if on the Piwik code you have:
-
-var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 6);
-then site_id = 6 in your case!
-
-
-3)Also, make sure the anonymous user has view access to this Piwik website. On Piwik, go to settings, then 
-on the users tab, pick up your website, and grant the anonymous user with view access. 
-
-
-So after this is done, a viewlet appears on videos handled by flowplayer, that shows the number of views of a video. 
-
-
-Authors
-============
-Dimitris Moraitis (dimo@unweb.me)
-Giorgos Logiotatidis (seadog@sealabs.net)
-Markos Gogoulos (mgogoulos@unweb.me)
-Mike Muzurakis (clopy@unweb.me)
+If you do the above steps a viewlet should appear on top of flowplayer displaying the number of views of a video. 
 
 
 Credits
 ============
-The product was created during the Bristol 2010 Plone conference. 
-Thanks to Engagemedia.org for sponsoring. 
+The product was created by Unweb.me and Giorgos Logiotatidis  during the Bristol 2010 Plone conference. 
+Thanks to Engagemedia.org for sponsoring our tickets and registrations.
+
 
