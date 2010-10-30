@@ -18,14 +18,16 @@ var site_id=X;
 ...
 <!-- End Piwik Tag -->
 
-3)Also, make sure the anonymous user has view access to this Piwik website. On Piwik, go to settings, then 
-on the users tab, pick up your website, and grant the anonymous user with view access. 
 
 Site id is a variable assigned for your website, by Piwik, because Piwik can have many websites on an installation. 
-For example, if on the Piwik code you have
+For example, if on the Piwik code you have:
 
 var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 6);
 then site_id = 6 in your case!
+
+
+3)Also, make sure the anonymous user has view access to this Piwik website. On Piwik, go to settings, then 
+on the users tab, pick up your website, and grant the anonymous user with view access. 
 
 
 So after this is done, a viewlet appears on videos handled by flowplayer, that shows the number of views of a video. 
