@@ -1,0 +1,24 @@
+<div id="playcounter"></div>
+<script>
+jq(function () {
+
+    jq.ajaxSetup ({ cache: false});
+
+    $f().onStart(function() { piwikTracker.trackLink($f().getPlaylist()[0].url,'link');
+    jq.getScript(pkBaseURL + '?module=API&method=Actions.getOutlinks&idSite=' + site_id + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive='+ $f().getPlaylist()[0].url.split('/').slice(3).join('/') + '&expanded=1&jsoncallback=playcountercb');});
+
+})
+
+window.playcountercb = function(jdata){
+hits = 0;
+for(var year in jdata)
+{
+    if (jdata[year].length > 0) {
+        hits += jdata[year][0]['subtable'][0]['nb_hits'];
+    }
+}
+
+jq('#playcounter').html(hits);
+};
+
+</script>
