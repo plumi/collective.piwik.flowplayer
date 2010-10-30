@@ -41,7 +41,7 @@ setup(name='collective.piwik.flowplayer',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'collective.transcode.star',
+          'collective.flowplayer',
       ],
       entry_points="""
       # -*- Entry points: -*-

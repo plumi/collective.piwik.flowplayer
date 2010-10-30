@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:zcml="http://namespaces.zope.org/zcml" 
     i18n_domain="collective.piwik.flowplayer">
 
   <five:registerPackage package="." initialize=".initialize" />
@@ -14,11 +15,13 @@
       class=".viewlets.PiwikVideoViewlet" />
 
 
+  <configure zcml:condition="installed collective.transcode.star">
   <browser:viewlet
       name="collective.piwik.flowplayer"
       for="collective.transcode.star.interfaces.ITranscoded"
       manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
       permission="zope2.View"
       class=".viewlets.PiwikVideoViewlet" />
+  </configure>
 
 </configure>
