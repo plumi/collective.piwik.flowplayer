@@ -1,0 +1,4 @@
+- Dimitris Moraitis, dimo@unweb.me
+- Giorgos Logiotatidis, seadog@sealabs.net
+- Markos Gogoulos, mgogoulos@unweb.me
+- Mike Muzurakis, clopy@unweb.me
