@@ -20,10 +20,13 @@ How to get it working
 
 If you do the above steps a viewlet should appear on top of flowplayer displaying the number of views of a video. 
 
+Tweaks
+============
+The number of a video views shown is increased when a user presses play on a video. If you want to change this 
+behavior, edit collective/piwik/flowplayer/viewlet.pt (change onStart for example).
 
 Credits
 ============
 The product was created by Unweb.me and Giorgos Logiotatidis  during the Bristol 2010 Plone conference. 
 Thanks to Engagemedia.org for sponsoring our tickets and registrations.
-
 
