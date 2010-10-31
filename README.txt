@@ -1,8 +1,8 @@
 Introduction
 ============
-collective.piwik.flowplayer was created to display a video play counter for Plone sites that use flowplayer. 
+collective.piwik.flowplayer displays a video play counter for Plone sites that use flowplayer. 
 
-The Piwik open source analytics system (http://piwik.org/) is used to store the play counter.
+The Piwik open source analytics system (http://piwik.org/) is used to store the usage data.
 
 Works both with and without collective.transcode.star
 
