@@ -12,18 +12,30 @@
   <browser:viewlet
       name="collective.piwik.flowplayer"
       for="collective.flowplayer.interfaces.IVideo"
-      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
+      manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
       permission="zope2.View"
       class=".viewlets.PiwikVideoViewlet" />
+
+  <browser:page
+      name="playcount"
+      for="collective.flowplayer.interfaces.IVideo"
+      permission="zope2.View"
+      class=".view.PlayCountView" />
 
 
   <configure zcml:condition="installed collective.transcode.star">
-  <browser:viewlet
-      name="collective.piwik.flowplayer"
-      for="collective.transcode.star.interfaces.ITranscoded"
-      manager="plone.app.layout.viewlets.interfaces.IAboveContentBody"
-      permission="zope2.View"
-      class=".viewlets.PiwikVideoViewlet" />
+      <browser:viewlet
+          name="collective.piwik.flowplayer"
+          for="collective.transcode.star.interfaces.ITranscoded"
+          manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+          permission="zope2.View"
+          class=".viewlets.PiwikVideoViewlet" />
+
+      <browser:page
+          name="playcount"
+          for="collective.transcode.star.interfaces.ITranscoded"
+          permission="zope2.View"
+          class=".view.PlayCountView" />
   </configure>
 
 </configure>

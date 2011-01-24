@@ -1,30 +1,33 @@
-<div id="playcounter"></div>
+<span id="piwik-playcount" class="discreet" style="display:none; "><span class="views"></span> views</span>
+<span id="piwik-downloads" class="discreet" style="display:none;"> - <span class="views"></span> downloads</span>
+
 <script>
 
 function getPlayCount() {
-    jq.getScript(pkBaseURL + '?module=API&method=Actions.getOutlinks&idSite=' + site_id + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive='+ $f().getPlaylist()[0].url.split('?')[0].split('/').slice(3).join('/') + '&expanded=1&jsoncallback=playcountercb');
+    jq.ajax({
+        url: $f().getPlaylist()[0].url.split('?')[0] + '/@@playcount',
+        type: "GET",
+        dataType: "json",
+        success: function(data) {
+            if (data[0] > 0) {
+                jq('#piwik-playcount span.views').html(data[0]);
+                jq('#piwik-downloads span.views').html(data[1]);
+                jq('#piwik-playcount').fadeIn();
+                jq('#piwik-downloads').fadeIn();
+            }
+        },
+        error: function(){
+        }
+    });
 }
 
-jq(function () {
+jq(window).load(function() {getPlayCount();});
 
+jq(function () {
     $f().onStart(function() { 
         piwikTracker.trackLink($f().getPlaylist()[0].url.split('?')[0],'link');
         getPlayCount();
     })
 })
-
-window.playcountercb = function(jdata){
-hits = 0;
-for(var year in jdata)
-{
-    if (jdata[year].length > 0) {
-        hits += jdata[year][0]['subtable'][0]['nb_hits'];
-    }
-}
-
-jq('#playcounter').html(hits);
-};
-
-jq(window).load(function() { getPlayCount(); });
 
 </script>
