@@ -14,6 +14,7 @@
       for="collective.flowplayer.interfaces.IVideo"
       manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
       permission="zope2.View"
+      template="flow.pt"
       class=".viewlets.PiwikVideoViewlet" />
 
   <browser:page
@@ -29,6 +30,7 @@
           for="collective.transcode.star.interfaces.ITranscoded"
           manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
           permission="zope2.View"
+          template="star.pt"
           class=".viewlets.PiwikVideoViewlet" />
 
       <browser:page
@@ -36,6 +38,13 @@
           for="collective.transcode.star.interfaces.ITranscoded"
           permission="zope2.View"
           class=".view.PlayCountView" />
+
+      <browser:page
+          name="downcount"
+          for="collective.transcode.star.interfaces.ITranscoded"
+          permission="zope2.View"
+          class=".view.DownCountView" />
+
   </configure>
 
 </configure>

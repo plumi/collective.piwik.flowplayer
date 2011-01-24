@@ -1,9 +1,9 @@
 <span id="piwik-playcount" class="discreet" style="display:none; "><span class="views"></span> views</span>
-<span id="piwik-downloads" class="discreet" style="display:none;"> - <span class="views"></span> downloads</span>
 
 <script>
 
 function getPlayCount() {
+    alert($f().getPlaylist()[0].url.split('?')[0]);
     jq.ajax({
         url: $f().getPlaylist()[0].url.split('?')[0] + '/@@playcount',
         type: "GET",
@@ -11,9 +11,7 @@ function getPlayCount() {
         success: function(data) {
             if (data[0] > 0) {
                 jq('#piwik-playcount span.views').html(data[0]);
-                jq('#piwik-downloads span.views').html(data[1]);
                 jq('#piwik-playcount').fadeIn();
-                jq('#piwik-downloads').fadeIn();
             }
         },
         error: function(){

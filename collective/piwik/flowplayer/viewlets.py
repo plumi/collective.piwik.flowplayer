@@ -2,5 +2,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone.app.layout.viewlets.common import ViewletBase
 
 class PiwikVideoViewlet(ViewletBase):
-    render = ViewPageTemplateFile('viewlet.pt')
+    """ Piwik Video Viewlet
+    """
 
