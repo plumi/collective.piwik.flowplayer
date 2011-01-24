@@ -4,7 +4,7 @@ import os
 def read(*rnames):
     return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
 
-version = '0.1'
+version = '0.2'
 
 long_description = (
     read('README.txt')
@@ -41,6 +41,7 @@ setup(name='collective.piwik.flowplayer',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'collective.piwik.core',
           'collective.flowplayer',
       ],
       entry_points="""
