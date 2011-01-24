@@ -39,18 +39,23 @@ function getDownCount() {
 jq(window).load(function() {getPlayCount(); getDownCount();});
 
 jq(function () {
-    jq("a.download").click(function() {
+    jq("p.download-block a").click(function() {
         piwikTracker.trackLink(location.href.split('/view')[0],'download');
         setTimeout("getDownCount()",3000);
     });
 
-    $f().onStart(function() { 
+    $f().onStart(function() {
         piwikTracker.trackLink(location.href.split('/view')[0],'link');
         getPlayCount();
         getDownCount();
     })
 
     jq('a[href$="at_download/file"]').click(function() {
+        piwikTracker.trackLink(location.href.split('/view')[0],'download');    
+        setTimeout("getDownCount()",3000);
+    });
+
+    jq('a[href="' + location.href.split('/view')[0] + '"]').click(function() {
         piwikTracker.trackLink(location.href.split('/view')[0],'download');    
         setTimeout("getDownCount()",3000);
     });
