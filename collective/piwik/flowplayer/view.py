@@ -51,6 +51,9 @@ class PlayCountView(BrowserView):
                 if level['url'] == self.page_url:
                     self.plays += int(level['nb_hits'])
                     self.unique += int(level['nb_visits'])
+                elif level['url'] == (self.page_url + '/'):
+                    self.plays += int(level['nb_hits'])
+                    self.unique += int(level['nb_visits'])
             elif level.get('subtable'):
                 self.check_url(level['subtable'])
 
@@ -76,7 +79,6 @@ class DownCountView(BrowserView):
         #for urls with slash(es) on the end
         self.page_url = self.context.absolute_url().strip('/')        
         self.page_id = self.page_url.split('/')[-1]
-
         url = settings.piwik_server +'?module=API&method=Actions.getDownloads&idSite=' + settings.piwik_siteid + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive=' +  self.page_id + '&expanded=1&token_auth=' + settings.piwik_key
 
         try: 
@@ -97,6 +99,9 @@ class DownCountView(BrowserView):
         for level in entry:
             if level.get('url'):            
                 if level['url'] == self.page_url:
+                    self.downloads += int(level['nb_hits'])
+                    self.unique += int(level['nb_visits'])
+                elif level['url'] == (self.page_url + '/'):
                     self.downloads += int(level['nb_hits'])
                     self.unique += int(level['nb_visits'])
             elif level.get('subtable'):
