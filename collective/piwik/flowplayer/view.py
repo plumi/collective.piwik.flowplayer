@@ -48,10 +48,7 @@ class PlayCountView(BrowserView):
     def check_url(self, entry):
         for level in entry:
             if level.get('url'):            
-                if level['url'] == self.page_url:
-                    self.plays += int(level['nb_hits'])
-                    self.unique += int(level['nb_visits'])
-                elif level['url'] == (self.page_url + '/'):
+                if level['url'] == self.page_url or level['url'] == (self.page_url + '/'):
                     self.plays += int(level['nb_hits'])
                     self.unique += int(level['nb_visits'])
             elif level.get('subtable'):
@@ -98,10 +95,7 @@ class DownCountView(BrowserView):
     def check_url(self, entry):
         for level in entry:
             if level.get('url'):            
-                if level['url'] == self.page_url:
-                    self.downloads += int(level['nb_hits'])
-                    self.unique += int(level['nb_visits'])
-                elif level['url'] == (self.page_url + '/'):
+                if level['url'] == self.page_url or level['url'] == (self.page_url + '/'):
                     self.downloads += int(level['nb_hits'])
                     self.unique += int(level['nb_visits'])
             elif level.get('subtable'):
