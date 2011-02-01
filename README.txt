@@ -30,6 +30,6 @@ behavior, edit collective/piwik/flowplayer/viewlet.pt (change onStart for exampl
 Credits
 =======
 
-The product was created by Unweb.me and Giorgos Logiotatidis  during the Bristol 2010 Plone conference. 
+The product was created by Unweb.me and Giorgos Logiotatidis during the Bristol 2010 Plone conference. 
 Thanks to Engagemedia.org for sponsoring our tickets and registrations.
 

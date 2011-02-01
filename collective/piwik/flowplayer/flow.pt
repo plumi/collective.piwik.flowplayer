@@ -3,7 +3,6 @@
 <script>
 
 function getPlayCount() {
-    alert($f().getPlaylist()[0].url.split('?')[0]);
     jq.ajax({
         url: $f().getPlaylist()[0].url.split('?')[0] + '/@@playcount',
         type: "GET",

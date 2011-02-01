@@ -1,6 +1,11 @@
 Changelog
 *********
 
+0.2 (2011-02-01)
+----------------
+
+- Use collective.piwik.core
+
 0.1
 ---
 
