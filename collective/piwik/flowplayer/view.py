@@ -30,13 +30,15 @@ class PlayCountView(BrowserView):
         self.page_id = self.page_url.split('/')[-1]
 
         url = settings.piwik_server +'?module=API&method=Actions.getOutlinks&idSite=' + settings.piwik_siteid + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive=' +  self.page_id + '&expanded=1&token_auth=' + settings.piwik_key
-
+        
         try: 
             piwik_data = simplejson.load(urllib2.urlopen(url))
         except Exception, e: # might be a URLError, timeout etc
+            print "exception %s !"  % e
             piwik_data = {}
 
         if piwik_data.get('result') == 'error':
+            print "error loading piwik data: %s" % piwik_data
             piwik_data = {} # error on the communication.maybe wrong token?
 
         for year in piwik_data:

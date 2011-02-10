@@ -13,18 +13,26 @@ function getPlayCount() {
                 jq('#piwik-playcount').fadeIn();
             }
         },
-        error: function(){
+        error: function(){//alert('error!');
         }
     });
 }
 
-jq(window).load(function() {getPlayCount();});
-
 jq(function () {
-    $f().onStart(function() { 
-        piwikTracker.trackLink($f().getPlaylist()[0].url.split('?')[0],'link');
-        getPlayCount();
-    })
-})
+    $f("*").each(
+        function() {
+            this.onStart(function() {
+                try {
+                    //_paq.push(['trackLink',this.getPlaylist()[0].url.split('?')[0],'link']);
+                    piwikTracker.trackLink(this.getPlaylist()[0].url.split('?')[0],'link');
+                    getPlayCount();
+                } catch( err ) { //alert(err);
+                }
+            })
+        }
+    );
+});
+
+jq(window).load(function() {getPlayCount();});
 
 </script>
