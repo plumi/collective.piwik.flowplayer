@@ -42,24 +42,34 @@ jq(window).load(function() {getPlayCount(); getDownCount();});
 
 jq(function () {
     jq("p.download-block a").click(function() {
-        piwikTracker.trackLink(location.href.split('/view')[0],'download');
-        setTimeout("getDownCount()",3000);
+        setTimeout("piwikTracker.trackLink(location.href.split('/view')[0],'download')",1000);
+        getDownCount();
+        setTimeout("getDownCount()",5000);
     });
 
-    $f().onStart(function() {
-        piwikTracker.trackLink(location.href.split('/view')[0],'link');
-        getPlayCount();
-        getDownCount();
-    })
+
+    $f("*").each(
+        function() {
+            this.onStart(function() {
+                if (this.getClip().type=='video') {
+                    try {
+                        piwikTracker.trackLink(location.href.split('/view')[0],'link');
+                        getPlayCount();
+                    } catch( err ) { //alert(err);
+                    }
+                }
+            })
+        }
+    );    
 
     jq('a[href$="at_download/file"]').click(function() {
-        piwikTracker.trackLink(location.href.split('/view')[0],'download');    
-        setTimeout("getDownCount()",3000);
+        setTimeout("piwikTracker.trackLink(location.href.split('/view')[0],'download')",1000);    
+        setTimeout("getDownCount()",5000);
     });
 
     jq('a[href="' + location.href.split('/view')[0] + '"]').click(function() {
-        piwikTracker.trackLink(location.href.split('/view')[0],'download');    
-        setTimeout("getDownCount()",3000);
+        setTimeout("piwikTracker.trackLink(location.href.split('/view')[0],'download')",1000);    
+        setTimeout("getDownCount()",5000);
     });
 });
 
