@@ -5,6 +5,9 @@ from plone.app.layout.viewlets.common import ViewletBase
 from zope.component import getUtility
 from plone.registry.interfaces import IRegistry
 from collective.piwik.core.interfaces import IPiwikSettings
+import logging
+
+log = logging.getLogger('collective.piwik.flowplayer')
 
 class PlayCountView(BrowserView):
     def __init__(self, context, request):
@@ -34,11 +37,11 @@ class PlayCountView(BrowserView):
         try: 
             piwik_data = simplejson.load(urllib2.urlopen(url))
         except Exception, e: # might be a URLError, timeout etc
-            print "exception %s !"  % e
+            log.error("exception %s !"  % e)
             piwik_data = {}
 
         if piwik_data.get('result') == 'error':
-            print "error loading piwik data: %s" % piwik_data
+            log.error("error loading piwik data: %s" % piwik_data)
             piwik_data = {} # error on the communication.maybe wrong token?
 
         for year in piwik_data:

@@ -57,7 +57,7 @@ jq(function () {
                     try {
                         piwikTracker.trackLink(location.href.split('/view')[0],'link');
                         getPlayCount();
-                    } catch( err ) { //alert(err);
+                    } catch( err ) { 
                     }
                 }
             })
