@@ -1,10 +1,18 @@
 Changelog
 *********
 
+0.3 (2011-02-11)
+----------------
+
+- Cross browser compatibility improvements
+- Error logging
+
+
 0.2 (2011-02-01)
 ----------------
 
-- Use collective.piwik.core
+- Use collective.piwik.core and server side queries for greatly improved security
+
 
 0.1
 ---

@@ -1,35 +1,23 @@
 Introduction
 ============
-collective.piwik.flowplayer displays a video play counter for Plone sites that use flowplayer. 
+collective.piwik.flowplayer displays a video play counter for Plone sites that use `collective.flowplayer <http://pypi.python.org/pypi/collective.flowplayer>`_.
+A download counter is displayed when used in combination with `collective.transcode.star http://pypi.python.org/pypi/collective.transcode.star`_ or `Plumi <http://plumi.org>`_.
 
-The Piwik open source analytics system (http://piwik.org/) is used to store the usage data.
-
-Works both with and without collective.transcode.star
+The `Piwik <http://piwik.org/>`_  open source analytics system is used to store and retrieve the usage data.
 
 How to get it working
 =====================
 
- - You need to have access to a working Piwik installation. Create a new site in the Piwik admin UI and provide the view permission to anonymous users. 
-
- - Add the Piwik Tracking Tag to Javascript web stats support field at <SITEURL>/@@site-controlpanel
-
- - You need to make a small change at the tracking tag adding the line "var site_id = X;", replacing X with your Piwik site_id
-   For example, if in the Piwik code you have:
-   var piwikTracker = Piwik.getTracker(pkBaseURL + "piwik.php", 6);
-   then site_id = 6 in your case
-
+ - Install collective.piwik.core and collective.flowplayer from the Plone control panel.
+ - You need to have access to a working Piwik installation. Create a new site in the Piwik admin UI and a new user who should have view access for that site.
+ - Go to the Piwik Settings page in the Plone control panel and enter the URL of your Piwik instance, the siteId and the user's authentication token
+ - Upload an flv/mp4 video that can be played by flowplayer and click play
 
 If you do the above a viewlet should appear on top of flowplayer displaying the number of views of each video. 
-
-Tweaks
-======
-
-The number of a video views shown is increased when a user presses play on a video. If you want to change this 
-behavior, edit collective/piwik/flowplayer/viewlet.pt (change onStart for example).
 
 Credits
 =======
 
-The product was created by Unweb.me and Giorgos Logiotatidis during the Bristol 2010 Plone conference. 
-Thanks to Engagemedia.org for sponsoring our tickets and registrations.
+The product was created by `Unweb.me <https://unweb.me>`_ and `Giorgos Logiotatidis <http://www.sealabs.net/seadog/>`_ during the `Bristol 2010 Plone conference <http://www.ploneconf2010.org/>`_. 
+Thanks to `EngageMedia <http://www.engagemedia.org/>`_ for sponsoring our tickets and registrations.
 
