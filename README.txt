@@ -1,7 +1,7 @@
 Introduction
 ============
 collective.piwik.flowplayer displays a video play counter for Plone sites that use `collective.flowplayer <http://pypi.python.org/pypi/collective.flowplayer>`_.
-A download counter is displayed when used in combination with `collective.transcode.star http://pypi.python.org/pypi/collective.transcode.star`_ or `Plumi <http://plumi.org>`_.
+A download counter is displayed when used in combination with `collective.transcode.star <http://pypi.python.org/pypi/collective.transcode.star>`_ or `Plumi <http://plumi.org>`_.
 
 The `Piwik <http://piwik.org/>`_  open source analytics system is used to store and retrieve the usage data.
 
