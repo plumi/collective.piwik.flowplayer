@@ -10,6 +10,7 @@ function getPlayCount() {
         url: location.href.split('/view')[0] + '/@@playcount',
         type: "GET",
         dataType: "json",
+        cache: false,
         success: function(data) {
             if (data[0] > 0) {
                 jq('#piwik-playcount span.views').html(data[0]);
@@ -25,6 +26,7 @@ function getDownCount() {
     jq.ajax({
         url: location.href.split('/view')[0] + '/@@downcount',
         type: "GET",
+        cache: false,
         dataType: "json",
         success: function(data) {
             if (data[0] > 0) {
