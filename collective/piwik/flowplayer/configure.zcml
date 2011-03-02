@@ -15,12 +15,14 @@
       manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
       permission="zope2.View"
       template="flow.pt"
+      layer="collective.piwik.core.interfaces.IPiwikCore"
       class=".viewlets.PiwikVideoViewlet" />
 
   <browser:page
       name="playcount"
       for="collective.flowplayer.interfaces.IVideo"
       permission="zope2.View"
+      layer="collective.piwik.core.interfaces.IPiwikCore"
       class=".view.PlayCountView" />
 
 
@@ -31,18 +33,21 @@
           manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
           permission="zope2.View"
           template="star.pt"
+          layer="collective.piwik.core.interfaces.IPiwikCore"
           class=".viewlets.PiwikVideoViewlet" />
 
       <browser:page
           name="playcount"
           for="collective.transcode.star.interfaces.ITranscoded"
           permission="zope2.View"
+          layer="collective.piwik.core.interfaces.IPiwikCore"
           class=".view.PlayCountView" />
 
       <browser:page
           name="downcount"
           for="collective.transcode.star.interfaces.ITranscoded"
           permission="zope2.View"
+          layer="collective.piwik.core.interfaces.IPiwikCore"
           class=".view.DownCountView" />
 
   </configure>
