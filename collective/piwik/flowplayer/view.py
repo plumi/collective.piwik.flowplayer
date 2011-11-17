@@ -32,7 +32,13 @@ class PlayCountView(BrowserView):
         self.page_url = self.context.absolute_url().strip('/')        
         self.page_id = self.page_url.split('/')[-1]
 
-        url = settings.piwik_server +'?module=API&method=Actions.getOutlinks&idSite=' + settings.piwik_siteid + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive=' +  self.page_id + '&expanded=1&token_auth=' + settings.piwik_key
+        url = settings.piwik_server
+              + '?module=API&method=Actions.getOutlinks&idSite='
+              + settings.piwik_siteid
+              + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive='
+              +  self.page_id
+              + '&expanded=1&token_auth='
+              + settings.piwik_key
         
         try: 
             piwik_data = simplejson.load(urllib2.urlopen(url))
@@ -81,7 +87,13 @@ class DownCountView(BrowserView):
         #for urls with slash(es) on the end
         self.page_url = self.context.absolute_url().strip('/')        
         self.page_id = self.page_url.split('/')[-1]
-        url = settings.piwik_server +'?module=API&method=Actions.getDownloads&idSite=' + settings.piwik_siteid + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive=' +  self.page_id + '&expanded=1&token_auth=' + settings.piwik_key
+        url = settings.piwik_server
+              +'?module=API&method=Actions.getDownloads&idSite='
+              + settings.piwik_siteid
+              + '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive='
+              +  self.page_id
+              + '&expanded=1&token_auth='
+              + settings.piwik_key
 
         try: 
             piwik_data = simplejson.load(urllib2.urlopen(url))
