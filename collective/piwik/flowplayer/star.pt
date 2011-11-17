@@ -49,20 +49,29 @@ jq(function () {
         setTimeout("getDownCount()",5000);
     });
 
-
-    $f("*").each(
-        function() {
-            this.onStart(function() {
-                if (this.getClip().type=='video') {
-                    try {
-                        piwikTracker.trackLink(location.href.split('/view')[0],'link');
-                        getPlayCount();
-                    } catch( err ) { 
+    try {
+        // if there is flowplayer track its plays
+        $f("*").each(
+            function() {
+                this.onStart(function() {
+                    if (this.getClip().type=='video') {
+                        try {
+                            piwikTracker.trackLink(location.href.split('/view')[0],'link');
+                            getPlayCount();
+                        } catch( err ) { // alert('cannot track flowplayer');
+                        }
                     }
-                }
-            })
-        }
-    );    
+                })
+            }
+        );
+    } catch (err) { // alert('flowplayer is undefined'); 
+    }
+  
+    /* bind play event to mediaelement
+    $('video').bind('play', function(){
+        console.info('end');
+    });
+    */
 
     jq('a[href$="at_download/file"]').click(function() {
         setTimeout("piwikTracker.trackLink(location.href.split('/view')[0],'download')",1000);    
