@@ -30,13 +30,12 @@ class CountView(BrowserView):
         
         #for urls with slash(es) on the end
         self.page_url = self.context.absolute_url().strip('/')        
-        self.page_id = self.page_url.split('/')[-1]
 
         url = settings.piwik_server +\
             '?module=API&method=Actions.getOutlink&idSite=' +\
             settings.piwik_siteid +\
             '&outlinkUrl=' +\
-            self.page_id +\
+            self.page_url +\
             '&period=year&date=last100&format=json&token_auth=' +\
             settings.piwik_key
 
@@ -75,13 +74,13 @@ class CountView(BrowserView):
         self.unique = 0
         
         #for urls with slash(es) on the end
-        self.page_url = self.context.absolute_url().strip('/')        
-        self.page_id = self.page_url.split('/')[-1]
+        self.page_url = self.context.absolute_url().strip('/')
+
         url = settings.piwik_server +\
             '?module=API&method=Actions.getDownload&idSite=' +\
             settings.piwik_siteid +\
             '&downloadUrl=' +\
-            self.page_id +\
+            self.page_url +\
             '&period=year&date=last100&format=json&token_auth=' +\
             settings.piwik_key
 
