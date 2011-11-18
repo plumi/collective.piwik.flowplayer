@@ -33,13 +33,13 @@ class PlayCountView(BrowserView):
         self.page_id = self.page_url.split('/')[-1]
 
         url = settings.piwik_server +\
-            '?module=API&method=Actions.getOutlinks&idSite=' +\
+            '?module=API&method=Actions.getOutlink&idSite=' +\
             settings.piwik_siteid +\
-            '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive=' +\
+            '&outlinkUrl=' +\
             self.page_id +\
-            '&expanded=1&token_auth=' +\
+            '&period=year&date=last100&format=json&token_auth=' +\
             settings.piwik_key
-        
+
         try: 
             piwik_data = simplejson.load(urllib2.urlopen(url))
         except Exception, e: # might be a URLError, timeout etc
@@ -88,11 +88,11 @@ class DownCountView(BrowserView):
         self.page_url = self.context.absolute_url().strip('/')        
         self.page_id = self.page_url.split('/')[-1]
         url = settings.piwik_server +\
-            '?module=API&method=Actions.getDownloads&idSite=' +\
+            '?module=API&method=Actions.getDownload&idSite=' +\
             settings.piwik_siteid +\
-            '&period=year&date=last100&format=json&filter_column_recursive=label&filter_pattern_recursive=' +\
+            '&downloadUrl=' +\
             self.page_id +\
-            '&expanded=1&token_auth=' +\
+            '&period=year&date=last100&format=json&token_auth=' +\
             settings.piwik_key
 
         try: 
