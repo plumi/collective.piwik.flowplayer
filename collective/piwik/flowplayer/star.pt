@@ -2,7 +2,7 @@
     <span id="piwik-playcount" class="discreet" style="display:none; "><span class="views"></span> views</span>
     <span id="piwik-downloads" class="discreet" style="display:none;"> - <span class="views"></span> downloads</span>
 </div>
-solinos
+
 <script>
 
 function getPlayCount() {

@@ -1,5 +1,5 @@
 <span id="piwik-playcount" class="discreet" style="display:none; "><span class="views"></span> views</span>
-mikos
+
 <script>
 
 function getPlayCount() {

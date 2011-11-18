@@ -1,5 +1,5 @@
 <span id="piwik-playcount" class="discreet" style="display:none; "><span class="views"></span> views</span>
-silos
+
 <script>
 
 function getPlayCount() {
@@ -18,10 +18,13 @@ function getPlayCount() {
     });
 }
 
-    $('video').bind('play', function(){
-        console.info('play');
-    });
-
-jq(window).load(function() {getPlayCount();});
+jq(window).load(function() {
+    getPlayCount();
+    $('video').mediaelementplayer().bind('play',function(){
+        piwikTracker.trackLink(location.href.split('/view')[0],'link');
+        getPlayCount();
+        //console.log('trackLink ' + location.href.split('/view')[0]);
+    });    
+});
 
 </script>

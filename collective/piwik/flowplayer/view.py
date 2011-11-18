@@ -13,6 +13,10 @@ class CountView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
+        self.plays = 0
+        self.unique = 0
+        self.downloads = 0
+        self.unique = 0        
 
     def __call__(self):
         self.request.response.setHeader('Content-Type', 'application/json')
@@ -38,7 +42,6 @@ class CountView(BrowserView):
             self.page_url +\
             '&period=year&date=last100&format=json&token_auth=' +\
             settings.piwik_key
-
         try: 
             piwik_data = simplejson.load(urllib2.urlopen(url))
         except Exception, e: # might be a URLError, timeout etc
@@ -50,19 +53,11 @@ class CountView(BrowserView):
             piwik_data = {} # error on the communication.maybe wrong token?
 
         for year in piwik_data:
-            if piwik_data[year]:
-                self.check_url(piwik_data[year])
+            for entry in piwik_data[year]:
+                self.plays += int(entry['nb_hits'])
+                self.unique += int(entry['nb_visits'])
 
         return(self.plays, self.unique)
-
-    def check_url(self, entry):
-        for level in entry:
-            if level.get('url'):            
-                if level['url'] == self.page_url or level['url'] == (self.page_url + '/'):
-                    self.plays += int(level['nb_hits'])
-                    self.unique += int(level['nb_visits'])
-            elif level.get('subtable'):
-                self.check_url(level['subtable'])
 
     def getDownloads(self):
         """ Return the number of downloads from Piwik 
@@ -97,12 +92,3 @@ class CountView(BrowserView):
                 self.check_url(piwik_data[year])
 
         return(self.downloads, self.unique)
-
-    def check_url(self, entry):
-        for level in entry:
-            if level.get('url'):            
-                if level['url'] == self.page_url or level['url'] == (self.page_url + '/'):
-                    self.downloads += int(level['nb_hits'])
-                    self.unique += int(level['nb_visits'])
-            elif level.get('subtable'):
-                self.check_url(level['subtable'])
