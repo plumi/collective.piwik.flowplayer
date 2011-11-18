@@ -1,10 +1,10 @@
 <span id="piwik-playcount" class="discreet" style="display:none; "><span class="views"></span> views</span>
-mikos
+silos
 <script>
 
 function getPlayCount() {
     jq.ajax({
-        url: $f().getPlaylist()[0].url.split('?')[0] + '/@@playcount',
+        url: location.href.split('/view')[0] + '/@@playcount',
         type: "GET",
         dataType: "json",
         success: function(data) {
@@ -18,20 +18,9 @@ function getPlayCount() {
     });
 }
 
-jq(function () {
-    $f("*").each(
-        function() {
-            this.onStart(function() {
-                try {
-                    //_paq.push(['trackLink',this.getPlaylist()[0].url.split('?')[0],'link']);
-                    piwikTracker.trackLink(this.getPlaylist()[0].url.split('?')[0],'link');
-                    getPlayCount();
-                } catch( err ) { //alert(err);
-                }
-            })
-        }
-    );
-});
+    $('video').bind('play', function(){
+        console.info('play');
+    });
 
 jq(window).load(function() {getPlayCount();});
 

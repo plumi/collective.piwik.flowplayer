@@ -7,9 +7,9 @@ from plone.registry.interfaces import IRegistry
 from collective.piwik.core.interfaces import IPiwikSettings
 import logging
 
-log = logging.getLogger('collective.piwik.flowplayer')
+log = logging.getLogger('collective.piwik.mediaelement')
 
-class PlayCountView(BrowserView):
+class CountView(BrowserView):
     def __init__(self, context, request):
         self.context = context
         self.request = request
@@ -64,16 +64,6 @@ class PlayCountView(BrowserView):
                     self.unique += int(level['nb_visits'])
             elif level.get('subtable'):
                 self.check_url(level['subtable'])
-
-class DownCountView(BrowserView):
-    def __init__(self, context, request):
-        self.context = context
-        self.request = request
-
-    def __call__(self):
-        self.request.response.setHeader('Content-Type', 'application/json')
-        result = self.getDownloads()
-        return simplejson.dumps(result)
 
     def getDownloads(self):
         """ Return the number of downloads from Piwik 

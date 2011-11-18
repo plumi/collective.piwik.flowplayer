@@ -9,23 +9,42 @@
 
   <include package="collective.piwik.core" />
 
-  <browser:viewlet
-      name="collective.piwik.flowplayer"
-      for="collective.flowplayer.interfaces.IVideo"
-      manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
-      permission="zope2.View"
-      template="flow.pt"
-      layer="collective.piwik.core.browser.interfaces.IPiwikCore"
-      class=".viewlets.PiwikVideoViewlet" />
+  <configure zcml:condition="installed collective.flowplayer">
+    <browser:viewlet
+        name="collective.piwik.flowplayer"
+        for="collective.flowplayer.interfaces.IVideo"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        permission="zope2.View"
+        template="flow.pt"
+        layer="collective.piwik.core.browser.interfaces.IPiwikCore"
+        class=".viewlets.PiwikVideoViewlet" />
 
-  <browser:page
-      name="playcount"
-      for="collective.flowplayer.interfaces.IVideo"
-      permission="zope2.View"
-      layer="collective.piwik.core.browser.interfaces.IPiwikCore"
-      class=".view.PlayCountView" />
-
-
+    <browser:page
+        name="playcount"
+        for="collective.flowplayer.interfaces.IVideo"
+        permission="zope2.View"
+        layer="collective.piwik.core.browser.interfaces.IPiwikCore"
+        class=".view.CountView" />
+  </configure>
+  
+  <configure zcml:condition="installed collective.mediaelementjs">
+    <browser:viewlet
+        name="collective.piwik.mediaelement"
+        for="collective.mediaelementjs.interfaces.IVideo"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContentTitle"
+        permission="zope2.View"
+        template="mediaelement.pt"
+        layer="collective.piwik.core.browser.interfaces.IPiwikCore"
+        class=".viewlets.PiwikVideoViewlet" />
+      
+    <browser:page
+        name="playcount"
+        for="collective.mediaelementjs.interfaces.IVideo"
+        permission="zope2.View"
+        layer="collective.piwik.core.browser.interfaces.IPiwikCore"
+        class=".view.CountView" />  
+  </configure>
+  
   <configure zcml:condition="installed collective.transcode.star">
       <browser:viewlet
           name="collective.piwik.flowplayer"
@@ -41,14 +60,14 @@
           for="collective.transcode.star.interfaces.ITranscoded"
           permission="zope2.View"
           layer="collective.piwik.core.browser.interfaces.IPiwikCore"
-          class=".view.PlayCountView" />
+          class=".view.CountView" />
 
       <browser:page
           name="downcount"
           for="collective.transcode.star.interfaces.ITranscoded"
           permission="zope2.View"
           layer="collective.piwik.core.browser.interfaces.IPiwikCore"
-          class=".view.DownCountView" />
+          class=".view.CountView" />
 
   </configure>
 
