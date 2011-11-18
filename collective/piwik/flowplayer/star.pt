@@ -67,11 +67,15 @@ jq(function () {
     } catch (err) { // alert('flowplayer is undefined'); 
     }
   
-    /* bind play event to mediaelement
+    // bind play event to mediaelement
     $('video').bind('play', function(){
-        console.info('end');
+        console.info('click_play');
+        try {
+            piwikTracker.trackLink(location.href.split('/view')[0],'link');
+            getPlayCount();
+        } catch( err ) { // alert('cannot track video');
+        }
     });
-    */
 
     jq('a[href$="at_download/file"]').click(function() {
         setTimeout("piwikTracker.trackLink(location.href.split('/view')[0],'download')",1000);    
@@ -83,7 +87,5 @@ jq(function () {
         setTimeout("getDownCount()",5000);
     });
 });
-
-
 
 </script>
